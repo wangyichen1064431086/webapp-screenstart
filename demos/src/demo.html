@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+	
+	<div id="screenstart" class="opening">
+
+		<div class="centerobjs">
+			<img src="{{staticPath}}/FTC-start.png" alt="FTC-start">
+
+			<p class="booklead" id="startstatus">
+				正在连接服务器
+			</p>
+
+			<div class="progressbar">
+				<div id="startbar" class="startbar">
+				</div>
+			</div>
+
+		</div>
+
+		<div class="backuplinks">
+			<a>
+				重新加载
+			</a>
+			<a href="http://m.ftchinese.com/">
+				手机网站
+			</a>
+			<a id="startFeedback" href="mailto:ftchinese.feedback@gmail.com?subject=Feedback about FTC Web App - from start screen">
+				报告问题
+			</a>
+		</div>
+	</div>
+
+
+
+{% endblock %}

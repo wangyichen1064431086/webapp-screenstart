@@ -1,0 +1,75 @@
+@import "o-colors/main";
+
+@include oColorsSetColor('blue-startscreen',#002F5F);
+@include oColorsSetUseCase(section-startscreen,background,'blue-startscreen');
+
+html,body {
+	margin:0;
+	padding:0;
+	height:100%;
+	width:100%;
+	font:16px "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","WenQuanYi Micro Hei","Heiti SC",STHeiti,SimSun,sans-serif;
+}
+.opening {
+	@include oColorsFor(section-startscreen);
+	z-index:100;
+	padding:0;
+	margin:0;
+	width:100%;
+	height:100%;
+	border:thin solid #002F5F;//不知道为什么去掉这一句，页面顶部就会有一条空白
+	position:absolute;
+}
+
+.centerobjs {
+	position:absolute;
+	top:21%;
+	width:100%;
+	text-align:center;
+	img {
+		width:266px;
+		height:210px;
+	}
+	.booklead {
+		font-size:1.3125em;
+		font-weight:600;//weight只有100~900的整百数，400为normal,700为bold
+		color:#FFF;
+		line-height:161.8%;
+		margin:0;
+		margin-top:15px;
+	}
+	.progressbar{
+		display:inline-block;//只有inline-block才能居中的
+		height:11px;
+		width:266px;
+		padding:2px;
+		border:1px inset #214A74;//inset:border-style的一种，定义 3D inset 边框。其效果取决于 border-color 的值。
+		margin:30px;
+		background-color:#002F5F;
+		.startbar{
+			width:5%;
+			height:9px;
+			border:1px solid #1F5E95;
+			border-radius:3px;
+			background-color: #24A7FF;
+
+		}
+	}
+}
+
+.backuplinks {
+	position:absolute;
+	bottom:20px;
+	width:100%;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	color:#FFF;
+	font-size:1.0625em;
+	a {
+		color:#FFF;
+		cursor:pointer;
+		text-decoration:none;
+		margin:0 15px;
+	}
+}

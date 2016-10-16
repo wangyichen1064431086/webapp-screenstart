@@ -1,0 +1,28 @@
+{
+  "name": "ftc-toggle",
+  "description": "FTC toggle component",
+  "main": [
+    "main.js"
+  ],
+  "authors": [
+    "weiguo.ni"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "FTC",
+    "toggle"
+  ],
+  "homepage": "https://github.com/FTChinese/ftc-toggle",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "demos"
+  ],
+  "devDependencies": {
+    "ftc-logos": "^0.3.0",
+    "o-colors": "^3.5.2"
+  }
+}

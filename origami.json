@@ -1,0 +1,17 @@
+{
+    "description": "Screen start",
+    "origamiType": "module",
+    "origamiCategory": "components",
+    "supportStatus": "active",
+    "demosDefaults": {
+        "js": "demos/src/demo.js"
+    },
+    "demos": [
+        {
+            "name": "webapp-screenstart",
+            "template": "demos/src/demo.html",
+            "expanded": true,
+            "description": ""
+        }
+    ]
+}
