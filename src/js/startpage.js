@@ -12,12 +12,13 @@ class Startpage{
 	  ** @config.loadType:可为'start'等等
 	*/
 	constructor(startEl,config){
-		///处理参数startEl：保证其是一个HTMLElement
+		///设置实例属性startEl:处理参数startEl：保证其是一个HTMLElement
 		if(!startEl){
 			return;
 		} else if(!(startEl instanceof HTMLElement)){
 			startEl = document.querySelector(startEl);
 		}
+   		this.startEl = startEl;
 
 		///设置实例属性gStartPageTemplate：指明首页正文要使用的数据文件的路径
 	    this.setStartPageTemplate();
@@ -58,6 +59,9 @@ class Startpage{
 
 		///设置实例属性startstartusEl：存储id="startstatus"的元素
 		const startstatusEl = document.getElementById("startstatus")||null;
+		console.log(startEl);
+		console.log(startstatusEl);
+		console.log(startEl.contains(startstatusEl));
 		if(startstatusEl && startEl.contains(startstatusEl)){
 			this.startstatusEl = startstatusEl;
 		} else {
@@ -103,9 +107,9 @@ class Startpage{
 
 		if(this.testIflocalhost()){//如果是本地测试
 			if (screen.width >= 700){
-				gStartPageTemplate = 'api/homecontentwide.html';
+				gStartPageTemplate = '/api/homecontentwide.html';
 			} else {
-				gStartPageTemplate = 'api/homecontent.html';
+				gStartPageTemplate = '/api/homecontent.html';
 			}
 		} else {
 			if(screen.width>=700){
@@ -198,9 +202,15 @@ class Startpage{
 
 	///方法updateStartStatus：用于给 id=startFeeadback的元素（即“报告问题”a元素的href）指定新的url,
 	updateStartStatus(startEl){
+		if(!startEl){
+			return;
+		} else if(!(startEl instanceof HTMLElement)){
+			startEl = document.querySelector(startEl);
+		}
+
 		let startFeedBackEl = document.getElementById("startFeedback");
 		const uaForMail = navigator.userAgent||navigator.vendor||""+ "%0D%0A%0D%0Amy URL: "+location.href;
-		if(startEl.contains(startFeedBack)){
+		if(startEl.contains(startFeedBackEl)){
 			startFeedBackEl.href = "mailto:ftchinese.feedback@gmail.com?subject=Feedback about FTC Web App - ' +  + '&body=%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AMy UA String for Your Reference: %0D%0A%0D%0A"+ uaForMail+"%0D%0A%0D%0AResources version: "+this._currentVersion+"%0D%0A%0D%0AScreen Mode: "+screen.width+"X"+screen.height+"%0D%0A%0D%0Amy URL: " + location.href
 		}
 	}
@@ -214,6 +224,7 @@ class Startpage{
 
 	///方法loadHomePage：移除启动页，打开主页
 	loadHomePage(loadType){
+		console.log('start loadHomePage');
 		this.updateStartStatus();
 		this.updateTimeStamp();
 
@@ -222,14 +233,19 @@ class Startpage{
 		}
 
 		const homePageRequestTime = new Date().getTime();
+		const startstatusEl = this.startstatusEl;
+		const startbarEl = this.startbarEl;
+		const startEl = this.startEl;
 		$.ajax({
-			url:this.gStartPageTemplate + this.timeStamp.themi,
+			url:this.gStartPageTemplate, //+ this.timeStamp.themi,
 			success: function(data){
-				if(this.startstatusEl){
-					this.startstatusEl.innerHTML("版面成功加载");
+				console.log("success");
+				if(startstatusEl){
+					console.log(startstatusEl);
+					startstatusEl.innerHTML = "版面成功加载";
 				}
-				//const loadToHome = new LoadToHome("")
-				$(this.startbarEl).animate(
+				//const loadToHome = new LoadToHome("")///这就是另一个类了
+				$(startbarEl).animate(
 					{
 						width:"100%"
 					},
@@ -245,7 +261,7 @@ class Startpage{
 					this.startstatusEl.innerHTML("服务器开小差了");
 				}
 			}
-		})
+		});///待解决：怎样将jquery实现其函数不与$绑定？
 	}
 
 };

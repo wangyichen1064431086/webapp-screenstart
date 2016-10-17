@@ -180,7 +180,8 @@ gulp.task('serve',gulp.parallel('html','styles','webpack',() => {
 		 	directory:true,
 		 	routes:{
 		 		'/bs':'bower_components',
-		 		'/st':'static'//一定要在routes里加上其它资源的位置，但位置名称必须以/开头，否则找不到
+		 		'/st':'static',//一定要在routes里加上其它资源的位置，但位置名称必须以/开头，否则找不到
+		 		'/api':'api'
 		 	}
 		}
 	});
